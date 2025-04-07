@@ -4,24 +4,19 @@
 | Colum              | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | email              | string     | null: false, unique: true      |
-| encrypted_password | string     | null: false                    |
-| nick_name          | string     | null: false                    |
+| encrypted_password | string     | null: false, unique: true      |
+| nick_name          | string     | null: false, unique: true      |
 | first_name         | string     | null: false                    |
 | last_name          | string     | null: false                    |
 | first_name_kana    | string     | null: false                    |
 | last_name_kana     | string     | null: false                    |
 | birthday           | date       | null: false                    |
-| password           | string     | null: false                    |
-| phone_number       | text       | null: false,                   |
-| address            | references | null: false, foreign_key: true |
-| cards              | references | null: false, foreign_key: true |
 
 ### Association
 
 - has_many :orders
 - has_many :items
-- has_one :address
-- has_one :cards
+- has_many :comments
 
 ## orders テーブル
 | Colum              | Type       | Options                        |
@@ -33,7 +28,7 @@
 ### Association
 
 - belongs_to :user
-- has_many :items
+- belongs_to :items
 
 
 ## items テーブル
@@ -41,42 +36,40 @@
 | ------------------ | ---------- | ------------------------------ |
 | item_name          | string     | null: false                    |
 | item_index         | text       | null: false                    |
-| item_status        | text       | null: false                    |
-| item_category      | text       | null: false                    |
+| item_status_id     | text       | null: false                    |
+| item_category_id   | integer    | null: false                    |
 | price              | integer    | null: false                    |
-| shipping_cost      | integer    | null: false                    |
+| shipping_cost_id   | integer    | null: false                    |
+| shipping_date_id   | date       | null: false                    |
+| user               | references | null: false                    |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :order
-- has_one: address
+- has_one :order
+- has_many :comments
 - has_one_attached :image
 
 ## address テーブル
 | Colum              | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| post_code          | integer    | null: false                    |
-| prefectures        | string     | null: false                    |
-| municipality       | string     | null: false                    |
-| building_name      | string     | null: true                     |
+| postcode           | integer    | null: false                    |
+| prefectures_id     | string     | null: false                    |
+| city               | string     | null: false                    |
+| block              | string     | null: false                    |
+| building           | string     |                                |
+| phone_number       | integer    | null: false                    |
+
 ### Association
 
--belongs_to :user
--belongs_to :item
+-belongs_to :order
 
-## comment テーブル
+## comments テーブル
 | Colum              | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | user               | references | null: false, foreign_key: true |
+| item               | references | null: false, foreign_key: true |
+| text               | text       | null: false
 
 belongs_to :user
-
-## cards テーブル
-| Colum              | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| user               | references | null: false, foreign_key: true |
-| customer_id        | integer    | null: false                    |
-| card_id            | integer    | null: false                    |
-
-belongs_to :user
+belongs_to :item

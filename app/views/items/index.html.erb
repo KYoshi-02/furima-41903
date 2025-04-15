@@ -135,7 +135,7 @@
         <%= link_to "#" do %>
          <div class='item-img-content'>
           <% if item.image.attached? %>
-           <%= image_tag "item-sample.png", class: "item-img" %>
+           <%= image_tag item.image, class: "item-img" %>
           <% else %>
            <%= image_tag "item-sample.png", class: "item-img" %>
           <% end %>
@@ -148,10 +148,10 @@
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
-            <%= "商品名" %>
+            <%= item.item_name %>
           </h3>
           <div class='item-price'>
-            <span><%= "販売価格" %>円<br><%= '配送料負担' %></span>
+            <span><%= "#{item.price}" %>円<br><%= '配送料負担' %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>

@@ -1,6 +1,5 @@
-function calcProfit() {
+document.addEventListener("turbo:load", () => {
   const priceInput = document.getElementById("item-price");
-
   if (!priceInput) return;
 
   priceInput.addEventListener("input", () => {
@@ -19,6 +18,4 @@ function calcProfit() {
       profitDisplay.textContent = "";
     }
   });
-}
-
-document.addEventListener("DOMContentLoaded", calcProfit);
+});

@@ -1,21 +1,26 @@
-document.addEventListener("turbo:load", () => {
+function price() {
   const priceInput = document.getElementById("item-price");
-  if (!priceInput) return;
+  const taxDisplay = document.getElementById("add-tax-price");
+  const profitDisplay = document.getElementById("profit");
+
+  if (!priceInput || !taxDisplay || !profitDisplay) return;
 
   priceInput.addEventListener("input", () => {
     const price = parseInt(priceInput.value);
-    const taxPrice = Math.floor(price * 0.1);
-    const profit = price - taxPrice;
-
-    const taxDisplay = document.getElementById("add-tax-price");
-    const profitDisplay = document.getElementById("profit");
-
     if (!isNaN(price) && price >= 300 && price <= 9999999) {
-      taxDisplay.textContent = taxPrice;
+      const tax = Math.floor(price * 0.1);
+      const profit = price - tax;
+      taxDisplay.textContent = tax;
       profitDisplay.textContent = profit;
     } else {
       taxDisplay.textContent = "";
       profitDisplay.textContent = "";
     }
   });
-});
+}
+
+window.addEventListener("turbo:load", price);
+window.addEventListener("turbo:render", price);
+
+window.addEventListener("turbo:load", price);
+window.addEventListener("turbo:render", price);

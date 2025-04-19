@@ -16,7 +16,6 @@ class Item < ApplicationRecord
   validates :shipping_date_id, numericality: { other_than: 1 }
   validates :prefecture_id, numericality: { other_than: 1 }
   validates :image, presence: true
-  validates :user, presence: true
   validates :price, numericality: {
     only_integer: true,
     greater_than_or_equal_to: 300,

@@ -11,12 +11,14 @@ FactoryBot.define do
 
     association :user
 
-    after(:build) do |item|
-      item.image.attach(
-        io: File.open(Rails.root.join('public/images/test_image.jpeg')),
-        filename: 'test_image.jpeg',
-        content_type: 'image/jpeg'
-      )
+    trait :with_image do
+      after(:build) do |item|
+        item.image.attach(
+          io: File.open(Rails.root.join('spec/fixtures/files/test_image.jpeg')),
+          filename: 'test_image.jpeg',
+          content_type: 'image/jpeg'
+        )
+      end
     end
   end
 end

@@ -1,4 +1,7 @@
 document.addEventListener('turbo:load', () => {
+
+  if (!document.getElementById('charge-form')) return;
+
   const payjp = Payjp(document.querySelector('meta[name="payjp-public-key"]').content);
   const elements = payjp.elements();
 

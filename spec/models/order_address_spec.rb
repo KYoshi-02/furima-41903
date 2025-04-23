@@ -22,6 +22,11 @@ RSpec.describe OrderAddress, type: :model do
       it '全ての値が正しく入力されていれば保存できる' do
         expect(@order_address).to be_valid
       end
+
+      it '建物名が空でも保存できる' do
+        @order_address.building = ''
+        expect(@order_address).to be_valid
+      end
     end
 
     context '内容に問題がある場合' do

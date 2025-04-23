@@ -1,5 +1,4 @@
-document.addEventListener('turbo:load', () => {
-
+function setupCardForm() {
   if (!document.getElementById('charge-form')) return;
 
   const payjp = Payjp(document.querySelector('meta[name="payjp-public-key"]').content);
@@ -36,4 +35,7 @@ document.addEventListener('turbo:load', () => {
       }
     });
   });
-});
+}
+
+window.addEventListener('turbo:load', setupCardForm);
+window.addEventListener('turbo:render', setupCardForm);

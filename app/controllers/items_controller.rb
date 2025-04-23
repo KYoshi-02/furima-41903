@@ -53,6 +53,6 @@ class ItemsController < ApplicationController
   end
 
   def redirect_if_invalid_user
-    redirect_to root_path if current_user != @item.user
+    redirect_to root_path if current_user != @item.user || @item.order.present?
   end
 end

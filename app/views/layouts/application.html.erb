@@ -9,9 +9,16 @@
 
   <%= javascript_include_tag "https://js.pay.jp/v2/" %>
   <meta name="payjp-public-key" content="<%= ENV['PAYJP_PUBLIC_KEY'] %>">
-  
+
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
   <%= javascript_importmap_tags %>
+
+  <% if controller.controller_name == "items" && ["new", "edit"].include?(controller.action_name) %>
+    <%= javascript_importmap_tags "item_price" %>
+  <% elsif controller.controller_name == "orders" && controller.action_name == "index" %>
+    <%= javascript_importmap_tags "card" %>
+  <% end %>
 </head>
 
 <body>

@@ -1,4 +1,6 @@
 function price() {
+  console.log("item_price.js loaded");  
+  
   const priceInput = document.getElementById("item-price");
   const taxDisplay = document.getElementById("add-tax-price");
   const profitDisplay = document.getElementById("profit");
